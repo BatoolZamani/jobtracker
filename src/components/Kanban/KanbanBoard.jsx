@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import jobs from '../../data/jobs';
+import Colors from '../color';
 
 const tasks = {
   Backlog: [{ title: 'Task 9' }, { title: 'Task 8' }, { title: 'Task 11' }, { title: 'Task 12' }],
@@ -17,7 +18,10 @@ export default function KanbanBoard() {
   return (
     <div className="flex gap-4 overflow-x-auto p-4">
       {Object.entries(tasks).map(([columnTitle, taskList]) => (
-        <div key={columnTitle} className="w-72 flex-shrink-0 bg-white rounded-xl p-4 shadow-md border">
+        <div
+          key={columnTitle}
+          className={`w-72 flex-shrink-0 ${Colors[columnTitle] || 'bg-white'} rounded-xl p-4 shadow-md border`}
+        >
           <h2 className="text-lg font-semibold mb-4 border-b pb-2">{columnTitle}</h2>
 
           <div className="flex flex-col gap-3">
