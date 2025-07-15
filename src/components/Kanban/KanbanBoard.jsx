@@ -14,25 +14,28 @@ const tasks = {
 };
 
 export default function KanbanBoard() {
-  console.log(jobs);
   return (
-    <div className="flex gap-4 overflow-x-auto p-4">
+    <div className="space-y-6 p-1 bg-gray-100 min-h-screen">
       {Object.entries(tasks).map(([columnTitle, taskList]) => (
-        <div
-          key={columnTitle}
-          className={`w-72 flex-shrink-0 ${Colors[columnTitle] || 'bg-white'} rounded-xl p-4 shadow-md border`}
-        >
-          <h2 className="text-lg font-semibold mb-4 border-b pb-2">{columnTitle}</h2>
+        <div key={columnTitle} className="flex items-start gap-4">
+          {/* عنوان ستون سمت راست */}
+          <div
+            className={`h-32 w-80 flex items-center justify-center transform -rotate-90 text-center font-bold text-white whitespace-nowrap text-sm md:text-base lg:text-lg shadow-md rounded-tl-full rounded-tr-full  ${Colors[columnTitle] || 'bg-white'}`}
+          >
+            {columnTitle}
+          </div>
 
-          <div className="flex flex-col gap-3">
+          {/* لیست کارت‌ها افقی */}
+          <div
+            className={`flex gap-3 flex-wrap p-3 rounded-lg shadow border w-full ${Colors[columnTitle] || 'bg-white'}`}
+          >
             {taskList.map((task, index) => (
-              <Card
-                key={index}
-                {...jobs[index]} // روش خلاصه برای پاس دادن همه props
-              />
+              <Card key={index} {...jobs[index]} />
             ))}
 
-            <button className="mt-2 text-sm text-blue-600 hover:underline text-left">+ Add Task</button>
+            <button className="w-[250px]  flex items-center bg-white/30 backdrop-blur-md justify-center text-blue-600 border border-dashed border-blue-400 rounded-md bg-transparent text-sm hover:underline">
+              + Add New Job
+            </button>
           </div>
         </div>
       ))}
