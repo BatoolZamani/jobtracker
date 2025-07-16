@@ -10,7 +10,9 @@ const jobs = [
       website: "https://apple.com/careers",
       daysSinceApply: 3,
       status: "pending",
-      workMode: "Remote"
+      workMode: "Remote",
+      interviewDate:"2025-08-30",
+      interviewTime:"14:30",
     },
     {
       company: "Google",
@@ -23,7 +25,9 @@ const jobs = [
       website: "https://careers.google.com",
       daysSinceApply: 10,
       status: "accepted",
-      workMode: "On-site"
+      workMode: "On-site",
+      interviewDate:"2025-08-30",
+      interviewTime:"14:30",
     },
     {
       company: "Microsoft",
@@ -36,7 +40,9 @@ const jobs = [
       website: "https://careers.microsoft.com",
       daysSinceApply: 7,
       status: "rejected",
-      workMode: "Hybrid"
+      workMode: "Hybrid",
+      interviewDate:"2025-08-30",
+      interviewTime:"14:30",
     }
   ];
   

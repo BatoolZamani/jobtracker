@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg); /* برای اینکه متن از بالا به پایین باشه */
+  }
