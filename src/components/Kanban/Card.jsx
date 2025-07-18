@@ -1,61 +1,47 @@
 import React from 'react';
+import { useDraggable } from '@dnd-kit/core';
 import { BsHeadset } from 'react-icons/bs';
 import { TiLocation } from 'react-icons/ti';
-import { FaBusinessTime } from 'react-icons/fa';
-import { FaCalendarAlt, FaRegClock } from 'react-icons/fa';
-export default function Card({
-  company,
-  jobTitle,
-  appliedDate,
-  contactPerson,
-  location,
-  jobType,
-  salary,
-  website,
-  daysSinceApply,
-  status,
-  workMode,
-  interviewDate,
-  interviewTime,
-}) {
+import { FaBusinessTime, FaCalendarAlt, FaRegClock } from 'react-icons/fa';
+
+export default function Card({ id, ...data }) {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
+  const style = transform ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` } : undefined;
+
+  const { company, jobTitle, appliedDate, contactPerson, location, jobType, interviewDate, interviewTime } = data;
+
   return (
-    <div className="bg-white rounded-xl p-5 shadow border text-sm space-y-2 font-inter">
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="bg-white rounded-xl p-5 shadow border text-sm space-y-2 font-inter w-[250px]"
+    >
       <h2 className="text-lg font-bold text-blue-700">{company}</h2>
 
-      <div className="flex gap-6 justify-between">
-        <p>
-          <strong className="text-sm text-gray-400">{jobTitle}</strong>
-        </p>
-        <p>
-          <strong className="text-sm text-gray-400">{appliedDate}</strong>
-        </p>
+      <div className="flex justify-between gap-6">
+        <strong className="text-sm text-gray-400">{jobTitle}</strong>
+        <strong className="text-sm text-gray-400">{appliedDate}</strong>
       </div>
 
-      <p>
-        <span>
-          <strong className="flex gap-2">
-            <BsHeadset className="text-gray-900 text-lg" />
-            {contactPerson}
-          </strong>
+      <div className="flex items-center gap-2">
+        <BsHeadset className="text-gray-900 text-lg" />
+        {contactPerson}
+      </div>
+
+      <div className="flex justify-between mt-3">
+        <span className="flex items-center gap-2">
+          <TiLocation className="text-gray-900 text-lg" />
+          {location}
         </span>
-      </p>
-
-      <div>
-        <div className="flex gap-6 justify-between">
-          <strong className="flex gap-2 mt-10">
-            <TiLocation className="text-gray-900 text-lg" />
-            {location}
-          </strong>
-          <p>
-            <strong className="flex gap-2 mt-10">
-              <FaBusinessTime className="text-gray-900 text-lg" />
-              {jobType}
-            </strong>
-          </p>
-        </div>
+        <span className="flex items-center gap-2">
+          <FaBusinessTime className="text-gray-900 text-lg" />
+          {jobType}
+        </span>
       </div>
 
-      <p className="flex  justify-between pr-8 pl-1">
+      <div className="flex justify-between pt-2">
         <span className="flex items-center gap-2">
           <FaCalendarAlt className="text-gray-600" />
           {interviewDate}
@@ -64,7 +50,7 @@ export default function Card({
           <FaRegClock className="text-gray-600" />
           {interviewTime}
         </span>
-      </p>
+      </div>
     </div>
   );
 }
